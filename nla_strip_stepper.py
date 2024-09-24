@@ -240,10 +240,15 @@ def adjust_strip_time(
 	frame_start = strip.frame_start
 	first_keyframe = min(fcurve.keyframe_points, key=lambda kf: kf.co.x)
 	offset = frame_start - first_keyframe.co.x
-	if offset == 0:
-		return {"CANCELLED"}
-	for keyframe in fcurve.keyframe_points:
-		keyframe.co.x += offset
+	if offset != 0:
+		for keyframe in fcurve.keyframe_points:
+			keyframe.co.x += offset
+
+	# NLAストリップの末尾をストリップ時間の最終キーフレームに合わせる
+	last_keyframe = max(fcurve.keyframe_points, key=lambda kf: kf.co.x)
+	strip_action_length = strip.action_frame_end - strip.action_frame_start
+	target_length = last_keyframe.co.x - first_keyframe.co.x
+	strip.repeat = target_length / strip_action_length
 
 	context.area.tag_redraw()
 	return True
