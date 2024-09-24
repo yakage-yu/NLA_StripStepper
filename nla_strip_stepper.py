@@ -233,7 +233,7 @@ def adjust_strip_time(
 		strip:bpy.types.NlaStrip) -> bool:
 
 	fcurve = strip.fcurves.find("strip_time")
-	if fcurve is None or fcurve.keyframe_points is None:
+	if fcurve is None or len(fcurve.keyframe_points) == 0:
 		self.report({"WARNING"}, "No keyframes for Strip Time are set in the active NLA Strip")
 		return False
 
