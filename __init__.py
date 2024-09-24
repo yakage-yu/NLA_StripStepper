@@ -6,7 +6,7 @@ bl_info = {
 	"name": "NLA Strip Stepper",
 	"description": "Changes the active NLA strip to transition at the specified interval",
 	"author": "yakage_yu [X(twitter):@yakage_yu]",
-	"version": (0, 1),
+	"version": (0, 2),
 	"blender": (4, 0, 0),
 	"category": "Animation",
 	"location": "Dope Sheet",

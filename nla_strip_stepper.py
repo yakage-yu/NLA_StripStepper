@@ -84,7 +84,7 @@ class ACTION_OT_SetStripTime(bpy.types.Operator):
 		action_length = int(strip.action_frame_end - action_frame_start)
 
 		i = 0
-		while i < strip_length:
+		while i <= strip_length:
 			strip.strip_time = int(action_frame_start + i % action_length)
 			strip.keyframe_insert(data_path="strip_time", frame=int(frame_start + i))
 			#print(f"Processing frame {i} in strip {strip.name}")
